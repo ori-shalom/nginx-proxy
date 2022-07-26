@@ -1,0 +1,9 @@
+
+server {
+	listen ${PORT};
+	location / {
+    proxy_set_header Host ${HOST};
+		add_header Access-Control-Allow-Origin *;
+		proxy_pass ${PROTOCOL}://${HOST};
+	}
+}
