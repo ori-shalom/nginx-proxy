@@ -2,9 +2,8 @@ FROM nginx:alpine
 
 RUN apk add gettext
 
-WORKDIR /etc/nginx
 COPY default.conf.template /etc/nginx/templates/default.conf.template
 
 ENV PORT 8080
-ENV HOST host.docker.internal
-ENV PROTOCOL http
+ENV TARGET_HOST 172.17.0.1
+ENV TARGET_PROTOCOL http

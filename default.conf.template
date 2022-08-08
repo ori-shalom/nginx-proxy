@@ -1,9 +1,14 @@
+upstream http_backend {
+    server ${HOST};
+    keepalive 32;
+}
 
 server {
-	listen ${PORT};
-	location / {
-	proxy_set_header Host ${HOST};
+    listen ${PORT};
+    location / {
+        proxy_set_header Host ${HOST};
 		proxy_http_version 1.1;
-		proxy_pass ${PROTOCOL}://${HOST};
-	}
+        proxy_pass ${PROTOCOL}://http_backend;
+        proxy_set_header Connection "";
+    }
 }
